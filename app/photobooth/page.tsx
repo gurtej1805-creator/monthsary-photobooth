@@ -62,24 +62,47 @@ export default function Photobooth() {
     const remoteVideo = remoteVideoRef.current;
     if (!localVideo || !remoteVideo) return;
 
+    // Smart Crop Formula (prevents any stretching!)
+    const drawVideoCover = (video: HTMLVideoElement, targetX: number, targetY: number, targetW: number, targetH: number) => {
+      const videoRatio = video.videoWidth / video.videoHeight;
+      const targetRatio = targetW / targetH;
+      let sx, sy, sw, sh;
+
+      if (videoRatio > targetRatio) {
+        sh = video.videoHeight;
+        sw = video.videoHeight * targetRatio;
+        sx = (video.videoWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = video.videoWidth;
+        sh = video.videoWidth / targetRatio;
+        sx = 0;
+        sy = (video.videoHeight - sh) / 2;
+      }
+      ctx.drawImage(video, sx, sy, sw, sh, targetX, targetY, targetW, targetH);
+    };
+
     ctx.filter = activeFilter.filter;
-    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
-    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    
+    // Draw each person perfectly cropped into a 540x600 box
+    drawVideoCover(localVideo, 0, yOffset, 540, 600);
+    drawVideoCover(remoteVideo, 540, yOffset, 540, 600);
+    
     ctx.filter = ""; 
 
     if (activeFilter.name !== "Normal") {
       const today = new Date();
       const dateString = `${today.getFullYear().toString().split('').join(' ')} . ${today.getMonth() + 1} . ${today.getDate()}`;
       
-      ctx.font = "bold 22px 'Courier New', Courier, monospace";
+      ctx.font = "bold 24px 'Courier New', Courier, monospace";
       ctx.fillStyle = "#ff9900"; 
       ctx.shadowColor = "rgba(255, 153, 0, 0.6)";
       ctx.shadowBlur = 8;
       
       ctx.textAlign = "right";
-      ctx.fillText(dateString, 1250, yOffset + 450);
-      
-      ctx.fillText(dateString, 610, yOffset + 450);
+      // Placed perfectly in the bottom right corner of each photo box
+      ctx.fillText(dateString, 1050, yOffset + 570);
+      ctx.fillText(dateString, 510, yOffset + 570);
       
       ctx.shadowBlur = 0; 
     }
@@ -91,23 +114,24 @@ export default function Photobooth() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const numPhotos = 3;
-    const individualWidth = 640;
-    const individualHeight = 480;
+    // True Mobile 4K Resolution
+    canvas.width = 1080; 
+    canvas.height = 1920;
 
-    canvas.width = individualWidth * 2; 
-    canvas.height = individualHeight * numPhotos;
+    // Fill background with a dark vintage color
+    ctx.fillStyle = "#0a0a0a";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready!` }));
 
-    for (let i = 0; i < numPhotos; i++) {
+    for (let i = 0; i < 3; i++) {
       for (let countdown = 3; countdown > 0; countdown--) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
       }
 
-      drawCombinedMoment(ctx, i * individualHeight);
+      // 600 height per photo box
+      drawCombinedMoment(ctx, i * 600);
       setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! ${i+1}/3` }));
       
       const flash = document.createElement("div");
@@ -118,15 +142,17 @@ export default function Photobooth() {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
-    ctx.font = "60px Arial";
+    ctx.font = "80px Arial";
     ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = 15;
     
+    // Top Left Heart
     ctx.textAlign = "left";
-    ctx.fillText("💖", 30, 80);
+    ctx.fillText("💖", 40, 100);
     
+    // Bottom Right Heart (Now sits beautifully in the blank polaroid "chin" space at the bottom!)
     ctx.textAlign = "right";
-    ctx.fillText("💖", canvas.width - 30, canvas.height - 30);
+    ctx.fillText("💖", canvas.width - 40, canvas.height - 40);
 
     const dataUrl = canvas.toDataURL("image/png");
     const link = document.createElement("a");
@@ -155,11 +181,11 @@ export default function Photobooth() {
       <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 mb-8 w-full max-w-4xl">
         <div className="flex flex-col items-center w-[45%] md:w-auto">
           <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">You</p>
-          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-[9/10] bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
         </div>
         <div className="flex flex-col items-center w-[45%] md:w-auto">
           <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">Her</p>
-          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-[9/10] bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
         </div>
       </div>
 
@@ -214,6 +240,7 @@ export default function Photobooth() {
     </main>
   );
 }
+
 
 
 
