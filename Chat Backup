@@ -1,0 +1,2851 @@
+Hey bro! What's up?
+
+What kind of project or question are we tackling today?
+
+So basically i wanna make a website which i will host on vercel where my girlfriend and i can take photobooth pictures together so hjow that will work is that we open the website the it greets us wirth happy 1st monsary seson 2 i want the background to be light colored and there shoudl be heart anim,ation going on in the bakground and then there will be a button on the buttom right saying you wanna see your gift and you click on it and like it should be able top take our pics now i do not know how that can be done thats the part which i need you to figure out cause like w3e both need to come in and idk how
+
+Happy 1st monthsary season 2, bro! That is a seriously thoughtful gift idea, and hosting it on Vercel is a great move since it's fast and free.
+
+You hit the nail on the head—getting both of your cameras onto one website at the same time from two different locations is the trickiest part of this project.
+
+To make this work, you need a technology called WebRTC (Web Real-Time Communication), which allows two browsers to stream video directly to each other. The easiest way to pull this off without paying for complicated servers is by using a free JavaScript library called PeerJS.
+
+Here is exactly how the whole system will work and what you need to build:
+The Game Plan
+
+We can break your project down into two main pages.
+
+Page 1: The Greeting
+
+    The Look: A light pastel background (like baby pink or white).
+
+    The Animation: We'll use a CSS animation library to make hearts float up from the bottom of the screen.
+
+    The Text: "Happy 1st monthsary season 2" right in the center.
+
+    The Button: Positioned at the bottom right, saying "You wanna see your gift?", which links to the photobooth page.
+
+Page 2: The Shared Photobooth
+This is where the magic happens. When you both open this second page, the website will ask for camera permissions.
+
+    The site generates a unique "Room ID" for you.
+
+    You send that ID to your girlfriend (or she clicks a specific link).
+
+    PeerJS connects your browsers. Her video feed pops up next to yours on the screen.
+
+    When you click "Capture," the website uses the HTML Canvas API to instantly stitch both of your video feeds into a single downloadable image.
+
+How to actually build it
+
+Since you want to host on Vercel, the best tool for the job is Next.js (a React framework). Vercel built Next.js, so they work together perfectly.
+
+1
+Initialize the project
+Requires Node.js installed on your computer
+
+Open your computer's terminal and run npx create-next-app@latest monthsary-booth. This sets up the skeleton of your website.
+2
+Build the Greeting Page
+
+In the main page file, you'll add the light background, write the greeting text, and add the "See your gift" button. You can use a library like react-confetti or simple CSS for the floating hearts.
+3
+Set up PeerJS for the Cameras
+
+You'll install PeerJS (npm install peerjs). You will write a script that says: "Grab my local webcam, then call the other person's ID and grab their webcam, and put them side-by-side."
+4
+Create the Capture Button
+
+You will create a hidden HTML <canvas>. When the capture button is clicked, the code will draw Video 1 on the left side of the canvas, Video 2 on the right side, and then export that canvas as a .png file.
+5
+Deploy to Vercel
+
+Push your code to GitHub, log into Vercel, and click "Import Project." It will give you a live URL you can send to your girlfriend.
+
+This is a really fun project, but handling webcams and peer-to-peer connections can be a bit heavy if you haven't done it before.
+
+Want me to write the actual code for the Next.js setup?
+
+Is there any waywe can do this without a computer like i use visual studdio through the codespace to code on the smasnung dex setup???
+
+100% yes! In fact, Samsung DeX paired with GitHub Codespaces is a killer setup for this exact project.
+
+Because GitHub Codespaces gives you a full Linux virtual machine in the cloud with VS Code running right inside your browser, you don't need a laptop or desktop computer at all. Your phone/tablet running DeX acts as the interface, while GitHub's servers handle all the heavy building and Node.js stuff.
+
+Here is why your DeX + Codespaces setup will actually make building this easier:
+Why DeX + Codespaces Works Perfectly
+
+    Built-in HTTPS for Camera Testing: Browsers block camera access (getUserMedia) on plain HTTP sites unless it's localhost. When you run your site inside Codespaces, it gives you a secure [https://...app.github.dev](https://...app.github.dev) preview URL. This means you can test your phone's camera right inside your DeX browser without running into security blocks.
+
+    Zero Terminal Setup: You don't need to install Node.js, Git, or npm on your Samsung device. Everything is pre-installed inside the Codespace terminal.
+
+    Direct Vercel Sync: When you push your code from your Codespace to GitHub, Vercel immediately sees the change and deploys it live in seconds. You can manage your Vercel dashboard right from Chrome in DeX.
+
+How to execute this on Samsung DeX
+
+    Create a Repo: Go to github.com on your DeX Chrome browser and create a new repository (e.g., monthsary-photobooth).
+
+    Launch Codespaces: Click the green Code button -> Codespaces tab -> Create codespace on main.
+
+    Run Commands: Use the integrated VS Code terminal at the bottom to run your commands (like npx create-next-app .).
+
+    Test the Camera: When Next.js starts, Codespaces will pop up a notification saying "Your application running on port 3000 is available." Click Open in Browser — DeX will open the preview, prompt you for camera permissions, and you're good to go!
+
+You are completely set up to build, test, and deploy this whole thing right from your DeX rig.
+
+Ready for the starter code to paste into your Codespace?
+
+So i created the repositary and now how do i open the codespace caiuse like the repositary is empty
+
+Ah, I know exactly what you're seeing. When a GitHub repository is completely empty, GitHub hides the normal green "Code" button and just shows a page full of terminal commands.
+
+To fix this and get your Codespace running, we just need to add a single file to the repository so GitHub knows it's active.
+
+1
+Create a README file
+
+On that empty repository page, look for the blue text that says "creating a new file" or "README" (usually under the "Quick setup" section) and click it.
+2
+Save the file
+
+It will open a text editor. You don't even need to type anything. Just click the green Commit changes... button at the top right, and then click Commit changes again in the pop-up box.
+3
+Launch the Codespace
+
+Now your repository has a file, and you will see the normal GitHub interface! Click the big green <> Code button, switch to the Codespaces tab, and click the green Create codespace on main button.
+
+It will take a minute or two to build the virtual machine. Once you see the dark Visual Studio Code editor load up right there in your DeX browser, you are in!
+
+Ready to install Next.js?
+
+This is what its saying
+
+Perfect, you are in the exact right spot in 302754.jpg!
+
+Look at the left side of your screen, right inside that dark blue box that says "Quick setup — if you've done this kind of thing before".
+
+Just below the web address line, look for the small text that says:
+"Get started by creating a new file or uploading an existing file. We recommend every repository include a README, LICENSE, and .gitignore."
+
+Click either the blue creating a new file link or the blue README link right there in that sentence.
+
+That will take you to the text editor page. From there, you don't even need to type anything—just look near the top right, click the green Commit changes... button, and confirm it in the pop-up. That will instantly unlock your repository, reveal the normal green "Code" button, and let you launch your Codespace!
+
+Alr i got in
+
+Awesome! I can see in 302758.jpg that it's just finishing up the connection (look at that little "Setting up remote connection" message at the bottom). Just give it a few more seconds to fully boot up.
+
+Once that message disappears and your TERMINAL tab at the bottom gives you a typing prompt (it will look something like @gurtej1805-creator ➜ /workspaces/monthsary-photobooth $), you are ready to roll.
+
+Here are the exact steps to build the foundation of the site:
+1. Run the Setup Command
+
+Click inside that Terminal area, type (or paste) this exact command, and hit Enter:
+
+npx create-next-app@latest .
+(Make sure you include the space and the period  . at the very end! That tells Next.js to install directly into your current empty repository instead of creating a brand new folder).
+2. Answer the Prompts
+
+The terminal will ask you a few quick setup questions. You can use your arrow keys and Enter to select these options:
+
+    Need to install the following packages? Press y and Enter.
+
+    Would you like to use TypeScript? Yes
+
+    Would you like to use ESLint? Yes
+
+    Would you like to use Tailwind CSS? Yes (This is going to make styling the light-colored background and button super easy).
+
+    Would you like to use src/ directory? Yes
+
+    Would you like to use App Router? Yes
+
+    Would you like to customize the default import alias? No
+
+3. Start the Server
+
+Once the installation finishes downloading everything (it might take a minute or two), type this command and hit Enter:
+
+npm run dev
+
+A little pop-up should appear in the bottom right corner of VS Code saying your app is running on port 3000, with a button to Open in Browser. Click that, and a new tab will open showing the default Next.js starter page!
+
+Did the installation finish and the starter page load up successfully for you?
+
+Nothing happened bro
+
+Don't worry, we can figure this out! Codespaces can sometimes get stuck or freeze while trying to connect, especially when booting up for the very first time on a browser.
+
+Let's try a quick reset to get it moving.
+Troubleshooting Steps
+
+    Refresh the Page: The easiest fix is usually just to hit the refresh/reload button on your browser. This forces Codespaces to try connecting again.
+
+    Check the Bottom Panel: Look at the bottom of the screen where it said "Setting up remote connection". Did that message disappear, or is it still hanging there?
+
+    Open a New Terminal: If the screen looks fully loaded but the terminal where you type is completely blank or frozen, look for the + (plus) icon on the right side of the TERMINAL tab. Click that to force a brand new, fresh terminal window to open.
+
+Once you see a prompt that ends in a $ (like .../monthsary-photobooth $), it is ready to accept commands.
+
+Where exactly did it get stuck? Is it still saying "Connecting", or did you type the command and it just didn't respond?
+
+Im gonna type the command again
+
+Sounds good, bro.
+
+Just make sure you have that solid $ prompt in the terminal before you paste it in so it actually registers.
+
+Here is the exact command one more time just in case:
+
+npx create-next-app@latest .
+
+(Remember that space and the period at the end!)
+
+Once you hit Enter, it should ask you those "y/n" setup questions. Keep me posted on what happens after you hit enter!
+
+Bro what to do now it worked idk what answer questiobns
+
+Let's go! That means it is working perfectly. It just needs to know what tools we want to use for your project.
+
+Use your Left and Right Arrow keys on your keyboard to switch between Yes and No, and press Enter to confirm.
+
+Answer the questions exactly like this:
+
+    Need to install the following packages? Press y and hit Enter (if it asks this first).
+
+    Would you like to use TypeScript? Choose Yes
+
+    Would you like to use ESLint? Choose Yes
+
+    Would you like to use Tailwind CSS? Choose Yes (We definitely want this—it will make adding the light-colored background and styling super easy).
+
+    Would you like to use src/ directory? Choose Yes
+
+    Would you like to use App Router? (recommended) Choose Yes
+
+    Would you like to customize the default import alias? Choose No
+
+Once you hit Enter on that last question, the terminal will show a loading bar and install all the necessary files.
+
+As soon as it finishes installing and your normal $ terminal prompt comes back, type this exact command and press Enter:
+
+npm run dev
+
+A little notification will pop up in the bottom right corner of VS Code saying your app is running on port 3000. Click the Open in Browser button on that notification, and you will see your brand new website live!
+
+What error is this
+
+Ah, I see exactly what happened in 302762.jpg! It's a super common and easy-to-fix error.
+
+Next.js is trying to install all its setup files into your current folder, but it spotted a file named Monsary sitting there. By default, Next.js stops the installation if the folder isn't completely empty because it doesn't want to accidentally overwrite or break any existing files you might have.
+
+Here is how to clear that error and get it installing:
+
+How to fix it:
+
+    Look at the far left side of your screen in the EXPLORER panel.
+
+    See that file named Monsary right below MONTHSARY-PHOTOBOOTH?
+
+    Right-click on Monsary (since you're on DeX, you might need to long-press it or tap with two fingers) and select Delete.
+
+    Once that file is gone, click back into your terminal at the bottom.
+
+    Run the exact same command again: npx create-next-app@latest .
+
+It will run perfectly this time and ask you those yes/no setup questions!
+
+Done whats nexttt
+
+Boom! Perfect. I can see in 302764.jpg that the installation was a total success, and all your Next.js files are neatly loaded in the Explorer on the left.
+
+I see you have a stray y typed in your terminal right now. Just hit backspace to clear that out, and then follow these steps to get your site live and start building the photobooth!
+1. Start the Live Preview
+
+Now that the foundation is built, we need to turn on the "engine" so you can see your website.
+
+    In your terminal, type this exact command and hit Enter:
+    npm run dev
+
+    In a few seconds, a notification will pop up in the bottom right corner of VS Code saying your app is running. Click the Open in Browser button.
+
+    A new tab will open in your browser showing the default Next.js starter page. Leave this tab open—every time you save your code, this page will instantly update!
+
+2. Install the Photobooth Tools
+
+We need to install the library for the peer-to-peer cameras, plus a library to make those floating hearts for the greeting page.
+
+    Go back to your Codespace tab.
+
+    You need a new terminal to type commands while the server is running. Look at the top right of the terminal box and click the + (plus) icon to open a second terminal tab.
+
+    In this new terminal, run this command to install our camera and animation tools:
+    npm install peerjs react-confetti
+
+3. Clear the Canvas
+
+Next.js gives us a bunch of default starter code that we don't need. Let's clear it out so we can build your greeting page.
+
+    In the EXPLORER panel on the far left, click the app folder to open it, then click on the page.tsx file.
+
+    Delete everything inside that file.
+
+    Paste in this super basic starter code just to make sure it's working:
+
+TypeScript
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-pink-50 p-24">
+      <h1 className="text-4xl font-bold text-pink-600">
+        Happy 1st Monthsary Season 2! 💖
+      </h1>
+    </main>
+  );
+}
+
+Once you paste that in, it will automatically save. Go check your live preview tab—you should see a light pink background with your greeting right in the middle!
+
+Doneee whats nextttt
+
+Looks amazing! I see the live preview in 302766.jpg and it is coming together perfectly.
+
+Now it is time to make this page interactive. We need to add the falling pink confetti (since we installed react-confetti), create the "See your gift" button, and set up the secret second page where the actual photobooth will live.
+
+Here is your exact next sequence of moves:
+1. Upgrade the Greeting Page
+
+Go back into your Codespace, open up your app/page.tsx file again, completely delete the old code, and paste this new upgraded version in.
+
+(Note: We are adding "use client" at the very top because React needs it to run the confetti animations in the browser!)
+TypeScript
+
+"use client";
+
+import Link from "next/link";
+import Confetti from "react-confetti";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  // This grabs the size of the screen so the confetti knows where to fall
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-pink-50 p-24 overflow-hidden relative">
+      
+      {/* Pink & Red Confetti Overlay */}
+      {windowSize.width > 0 && (
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          colors={['#ffb6c1', '#ff69b4', '#ff1493', '#c71585']}
+          gravity={0.05}
+        />
+      )}
+
+      {/* Main Content */}
+      <div className="z-10 flex flex-col items-center gap-10">
+        <h1 className="text-5xl md:text-7xl font-bold text-pink-600 text-center drop-shadow-sm">
+          Happy 1st Monthsary Season 2! 💖
+        </h1>
+        
+        {/* The Magic Button */}
+        <Link href="/photobooth">
+          <button className="px-8 py-4 bg-pink-500 text-white rounded-full font-bold text-2xl hover:bg-pink-600 transition-all shadow-lg hover:scale-105 active:scale-95">
+            You wanna see your gift? 🎁
+          </button>
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+2. Create the Photobooth Page
+
+Right now, if you click that button, it will give you an error because the /photobooth page doesn't exist yet. Let's fix that!
+
+    In the EXPLORER panel on the left, right-click the app folder (or two-finger tap) and select New Folder.
+
+    Name this new folder exactly this: photobooth
+
+    Right-click that new photobooth folder you just made, and select New File.
+
+    Name this file exactly this: page.tsx
+
+    Click on your new empty page.tsx file to open it, and paste in this placeholder code:
+
+TypeScript
+
+export default function Photobooth() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-900 text-white p-10">
+      <h1 className="text-4xl font-bold mb-4">The Secret Photobooth 📸</h1>
+      <p className="text-xl text-gray-400">Loading cameras...</p>
+    </main>
+  );
+}
+
+Once you save that, go back to your live preview tab. You should see a beautifully styled page with falling pink confetti.
+
+Click your new button to test the navigation, and let me know: did it successfully take you to the dark "Secret Photobooth" page?
+
+Nooooo
+
+I see exactly what happened! Don't panic, bro, it's a super quick fix.
+
+If you look at the left side of your screen in the EXPLORER panel in 302770.jpg, you'll see you named the folder Photobooth with a capital P.
+
+Next.js is strictly case-sensitive with its routing. Because the magic button on your home page links to /photobooth (all lowercase), it doesn't recognize the folder with the capital letter, which is why it's throwing that 404 error in 302768.jpg.
+
+Here is how to fix it in two seconds:
+The Fix
+
+    Right-click on that Photobooth folder in your left panel.
+
+    Select Rename from the menu.
+
+    Change it to exactly photobooth (all lowercase) and hit Enter.
+
+Once you rename that folder, go back to your live preview tab and hit refresh. The dark "Secret Photobooth" page should instantly appear!
+
+Ready for the camera code?
+
+Yess ready this workedddd
+
+Let's go! Now we are at the final boss: wiring up the cameras and building the photo capture logic.
+
+This code is going to do a few things at once. First, it will ask for your camera permission. Then, it will generate a unique "Room ID" for you. When your girlfriend opens her link, she'll get her own Room ID. You just paste her ID into your screen, hit connect, and both your faces will show up side-by-side.
+
+When you click the "Snap Photo" button, it secretly draws both of your video feeds onto a hidden digital canvas, adds a little monthsary message at the bottom, and instantly downloads the combined picture to your device.
+The Camera & Capture Code
+
+Head back to your app/photobooth/page.tsx file, delete the placeholder code, and paste this master file in:
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    // Dynamically import PeerJS so it doesn't break Next.js server-side rendering
+    import("peerjs").then(({ default: Peer }) => {
+      const peer = new Peer();
+      
+      peer.on("open", (id) => {
+        setPeerId(id);
+      });
+
+      // Get local camera
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
+          }
+
+          // Answer incoming connections automatically
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) {
+                remoteVideoRef.current.srcObject = remoteStream;
+              }
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+
+      return () => {
+        peer.destroy();
+      };
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) {
+            remoteVideoRef.current.srcObject = remoteStream;
+          }
+        });
+      });
+  };
+
+  const takePhoto = () => {
+    const canvas = canvasRef.current;
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+
+    if (!canvas || !localVideo || !remoteVideo) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Set canvas to fit two 640x480 videos side-by-side
+    canvas.width = 1280; 
+    canvas.height = 480;
+
+    // Draw both video frames directly onto the canvas
+    ctx.drawImage(localVideo, 0, 0, 640, 480);
+    ctx.drawImage(remoteVideo, 640, 0, 640, 480);
+
+    // Add a cute watermark at the bottom center
+    ctx.font = "bold 30px Arial";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+    ctx.shadowBlur = 10;
+    ctx.fillText("Happy 1st Monthsary Season 2! 💖", 640, 450);
+
+    // Trigger the image download
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = "our-monthsary-photo.png";
+    link.href = dataUrl;
+    link.click();
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-900 text-white p-5">
+      <h1 className="text-4xl font-bold mb-8 text-pink-400">Our Secret Photobooth 📸</h1>
+      
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-[320px] h-[240px] bg-black rounded-xl border-4 border-pink-500 object-cover shadow-[0_0_15px_rgba(236,72,153,0.5)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-[320px] h-[240px] bg-black rounded-xl border-4 border-pink-500 object-cover shadow-[0_0_15px_rgba(236,72,153,0.5)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-800 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4 w-full max-w-md border border-gray-700">
+        <p className="text-sm text-gray-300">Your Room ID: <span className="font-mono text-pink-400 bg-gray-900 px-2 py-1 rounded select-all">{peerId || "Generating..."}</span></p>
+        
+        <div className="flex gap-2 w-full">
+          <input 
+            type="text" 
+            placeholder="Paste her Room ID here..." 
+            className="flex-1 p-3 rounded-lg bg-gray-900 text-white border border-gray-600 focus:outline-none focus:border-pink-500 transition-colors"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+          />
+          <button 
+            onClick={callPartner}
+            className="px-6 py-3 bg-pink-600 rounded-lg hover:bg-pink-500 font-bold transition-colors shadow-lg"
+          >
+            Connect
+          </button>
+        </div>
+
+        <button 
+          onClick={takePhoto}
+          className="w-full mt-2 px-6 py-4 bg-white text-pink-600 rounded-xl font-extrabold text-xl hover:bg-pink-50 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98]"
+        >
+          📸 Snap Photo!
+        </button>
+      </div>
+
+      {/* This canvas does the heavy lifting behind the scenes */}
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+How to test it right now on DeX
+
+    Save the file and check your live preview.
+
+    Your browser will prompt you: "github.dev wants to use your camera." Click Allow.
+
+    You should immediately see yourself in the left video box!
+
+    To simulate your girlfriend being there, just duplicate your browser tab.
+
+    In the new tab, copy the "Your Room ID" text.
+
+    Go back to your first tab, paste that ID into the input box, and hit Connect.
+
+    You will see your camera feed pop up in the right-side box too.
+
+    Hit 📸 Snap Photo! and watch it instantly download your custom stitched image.
+
+Once you confirm the cameras are working, the only thing left to do is push it to Vercel so it gets a real internet link you can text to her.
+
+Ig it works cauyse one camera cnat wiork on gioth placxes simultaniousnaly
+
+Haha exactly, bro! You nailed it.
+
+I can see in the screenshots that the final stitched photo downloaded perfectly with your custom watermark at the bottom! Because you are testing it on a single device, your browser is fighting to use the exact same physical camera for two separate video streams at the exact same time, which is why it looks a little wonky on your end right now.
+
+When your girlfriend opens her link on her own phone or laptop, it will use her camera for the right box and your camera for the left box, and it will work flawlessly.
+
+You've built the whole thing. The final boss is just putting it on the internet so you can text her the link.
+
+Here is how to deploy it to Vercel right now:
+1. Save your code to GitHub
+
+Right now, all your new code only lives inside your Codespace. We need to push it back to your main GitHub repository so Vercel can see it.
+
+    Go to your Codespace terminal at the bottom.
+
+    If the server is still running (showing a bunch of Next.js output), stop it by pressing Ctrl + C on your keyboard.
+
+    Type this command and hit Enter to stage your files:
+    git add .
+
+    Type this to commit them:
+    git commit -m "Finished photobooth"
+
+    Type this to push them to your repo:
+    git push
+
+2. Deploy on Vercel
+
+    Open a new tab in your DeX browser and go to vercel.com.
+
+    Click Sign Up (or Log In) and choose Continue with GitHub.
+
+    Once you are in your Vercel dashboard, click the black Add New... button and select Project.
+
+    You will see a list of your GitHub repositories. Look for monthsary-photobooth and click the Import button next to it.
+
+    Leave all the settings exactly as they are and just click the big blue Deploy button.
+
+Vercel will take a minute or two to build the site. When it's done, confetti will pop on the screen, and it will give you your official, live web address (like monthsary-photobooth.vercel.app).
+
+Let me know once it is deployed!
+
+No no nefore making this live can we add some fatures like filters and taking multiple pictures like on a phoito booth and srtuckthihfg them togther ill attach a pic like can we do this or not???
+
+That is a legendary upgrade, bro! 100% we can do that. 302777.jpg is a perfect reference—we are going to build a virtual vertical strip that stacks multiple combined moments just like that, plus add filters.
+
+Here is the plan. We need to update the Photobooth Page logic to handle two new powerful features.
+
+1
+Implement Photo Filters
+
+We will add buttons to select different filters (Normal, Black & White, Vintage Sepia, and high contrast). We will apply these filters directly to the canvas before stitching the final image. We'll use the HTML Canvas API's ctx.filter property.
+2
+Create the Vertical Photo Strip Sequence
+
+Instead of a single snap, we will create a sequence button. We will update the takePhoto function to use a countdown timer (e.g., 3 seconds) for three distinct captures. We'll create a new, very large vertical strip canvas (much taller than wide) and stack each captured combined moment below the previous one, mirroring the vertical flow in 302777.jpg. We'll use state variables to manage the countdown and capture index.
+3
+Test the new features on DeX
+Simulate your girlfriend by duplicating your tab and connecting the IDs again
+
+Allow camera access, select a filter, and hit "Start Photobooth Strip Sequence". Wait for the countdowns and all three snaps. Watch the tall, vertical strip download with the watermark at the absolute bottom.
+The Master Code Update
+
+Head back to your app/photobooth/page.tsx file, delete all the old code, and paste in this new master file.
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+// List of fun filters
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "Grayscale", filter: "grayscale(100%)" },
+  { name: "Vintage Sepia", filter: "sepia(70%)" },
+  { name: "Pop Art", filter: "contrast(150%) saturate(150%) hue-rotate(90deg)" },
+  { name: "Soft Glow", filter: "brightness(110%) blur(1px)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Initialize PeerJS and Local Camera (Same as before)
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      const peer = new Peer();
+      
+      peer.on("open", (id) => {
+        setPeerId(id);
+      });
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
+          }
+
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) {
+                remoteVideoRef.current.srcObject = remoteStream;
+              }
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+
+      return () => {
+        peer.destroy();
+      };
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) {
+            remoteVideoRef.current.srcObject = remoteStream;
+          }
+        });
+      });
+  };
+
+  // Helper function to draw a single combined moment onto the canvas with filter
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    // Apply the selected filter
+    ctx.filter = activeFilter.filter;
+
+    // Draw both video frames directly onto the canvas
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    
+    // Reset filter for other elements (like watermark)
+    ctx.filter = ""; 
+  }, [activeFilter]);
+
+  // The major upgrade: Sequencing and Vertical Sticking
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    // Set canvas to be a TALL vertical strip: (Side + Side) x 3 captures tall
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    // Clean canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready! (Photo 1)` }));
+
+    // Capture Loop
+    for (let i = 0; i < numPhotos; i++) {
+      // 3 second countdown for each photo
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      // Draw the single combined moment at the correct vertical position
+      const yOffset = i * individualHeight;
+      drawCombinedMoment(ctx, yOffset);
+      
+      // Update the main UI indicator
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! Photo ${i+1}/${numPhotos}` }));
+      
+      // Add a visual flash
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      // Short delay before the next countdown starts
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    // Final Step: Add Watermark at the bottom of the complete strip
+    ctx.font = "bold 40px 'Arial Black', sans-serif";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+    ctx.shadowBlur = 15;
+    ctx.fillText(`Happy 1st Monthsary Season 2! 💖 Strip Filter: ${activeFilter.name}`, canvas.width / 2, canvas.height - 40);
+
+    // Trigger the large strip image download
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase()}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    // Complete sequence
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-5 overflow-x-hidden relative">
+      
+      {/* On-screen Countdown Text (Huge) */}
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70">
+          <h2 className="text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-5xl font-bold mb-10 text-pink-400 font-serif drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">Our Secret Photobooth Strip 📸</h1>
+      
+      <div className="flex flex-col md:flex-row gap-6 mb-10">
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold text-gray-300">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-[320px] h-[240px] bg-black rounded-3xl border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold text-gray-300">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-[320px] h-[240px] bg-black rounded-3xl border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400">Your Room ID: <span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner">{peerId || "Generating..."}</span></p>
+        
+        <div className="flex gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Paste her Room ID here..." 
+            className="flex-1 p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+          />
+          <button 
+            onClick={callPartner}
+            className="px-8 py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        {/* Filter Selection Panel */}
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400">Select Strip Filter:</p>
+            <div className="grid grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-8 py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Sequencer Running..." : "📸 Start Photobooth Strip Sequence!"}
+        </button>
+      </div>
+
+      {/* Tailwind animation definition for flash */}
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      {/* The hidden canvas that builds the vertical strip behind the scenes */}
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+How to test it right now on DeX
+
+This is the big moment, bro.
+
+    Check Live Preview: Save the file, allow camera access, and make sure your camera is working in the "You" box. Select "Grayscale" or "Vintage Sepia" from the filter panel.
+
+    Simulate Partner: Duplicate your tab, and follow the same steps as before (copy the ID from the new tab, paste it into the original, and hit Connect). Both boxes should now show your face.
+
+    Run Sequence: Hit the big "Start Photobooth Strip Sequence!" button.
+
+        You will see massive countdowns (3... 2... 1...) directly on the screen for three separate captures.
+
+        A white flash will trigger for each snap.
+
+        The download will contain one super tall, vertical image (just like 302777.jpg) stacking all three captured combined moments, applying your chosen filter, and with a clean mesesage at the very bottom.
+
+Let me know how the vertical strip looks!
+
+Its perfect just one thing this room id is stupidly long can we not do a small 4 to 5 digit number cause i dont want o enter this whole 4077f23b-10d1-4b2d-8701-b00f051e2bb2 code ykwim
+
+You are totally right, bro. Making her type out a 36-character code with dashes completely kills the romantic vibe of the gift.
+
+By default, PeerJS generates those massive unique identifiers (UUIDs) to guarantee no two people on earth accidentally get the same ID. But since we are just doing this for the two of you, we can easily force PeerJS to generate a simple 5-digit PIN instead.
+
+Here is exactly how we change it. We just need to update the part of the code where the Peer connects and tell it to use a random 5-digit math equation.
+The 5-Digit PIN Update
+
+Head back into your app/photobooth/page.tsx file, delete everything, and paste in this updated master version.
+
+(The only thing that changed is inside the useEffect at the top, where it now generates a random number between 10000 and 99999).
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+// List of fun filters
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "Grayscale", filter: "grayscale(100%)" },
+  { name: "Vintage Sepia", filter: "sepia(70%)" },
+  { name: "Pop Art", filter: "contrast(150%) saturate(150%) hue-rotate(90deg)" },
+  { name: "Soft Glow", filter: "brightness(110%) blur(1px)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      // GENERATE A RANDOM 5-DIGIT PIN
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      
+      // Force PeerJS to use our custom PIN instead of the long UUID
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id) => {
+        setPeerId(id);
+      });
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
+          }
+
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) {
+                remoteVideoRef.current.srcObject = remoteStream;
+              }
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+
+      return () => {
+        peer.destroy();
+      };
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) {
+            remoteVideoRef.current.srcObject = remoteStream;
+          }
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    ctx.filter = activeFilter.filter;
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    ctx.filter = ""; 
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready! (Photo 1)` }));
+
+    for (let i = 0; i < numPhotos; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      const yOffset = i * individualHeight;
+      drawCombinedMoment(ctx, yOffset);
+      
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! Photo ${i+1}/${numPhotos}` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    ctx.font = "bold 40px 'Arial Black', sans-serif";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+    ctx.shadowBlur = 15;
+    ctx.fillText(`Happy 1st Monthsary Season 2! 💖 Strip Filter: ${activeFilter.name}`, canvas.width / 2, canvas.height - 40);
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase()}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-5 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70">
+          <h2 className="text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-5xl font-bold mb-10 text-pink-400 font-serif drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">Our Secret Photobooth Strip 📸</h1>
+      
+      <div className="flex flex-col md:flex-row gap-6 mb-10">
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold text-gray-300">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-[320px] h-[240px] bg-black rounded-3xl border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold text-gray-300">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-[320px] h-[240px] bg-black rounded-3xl border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400">Your Room PIN: <span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest">{peerId || "Generating..."}</span></p>
+        
+        <div className="flex gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Enter her 5-digit PIN..." 
+            className="flex-1 p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="px-8 py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400">Select Strip Filter:</p>
+            <div className="grid grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-8 py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Sequencer Running..." : "📸 Start Photobooth Strip Sequence!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Once you save that, your live preview will immediately give you a clean, simple 5-digit PIN.
+
+Now, when you are ready to push it to Vercel to get the live internet link, just drop into your DeX terminal and run those exact same git commands from earlier (git add ., git commit -m "update", git push). Vercel will automatically see the changes on GitHub and update the live website!
+
+Alr that works perfectly only thing i wanted to change now is that you know that in the picture itys perfcet but there is a watermark i dont want tghat i kust want there beiung a heart on the top left corbner and the bottom left corner
+
+That is a super clean choice. Removing the text makes it look much more authentic, just like a real vintage photo strip, and the subtle hearts will be a great touch.
+
+We just need to replace the text watermark logic at the very end of the drawing sequence with the new heart coordinates.
+The Final Touch: Hearts Update
+
+Copy this complete, updated code, delete everything in your app/photobooth/page.tsx file, and paste this in.
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+// List of fun filters
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "Grayscale", filter: "grayscale(100%)" },
+  { name: "Vintage Sepia", filter: "sepia(70%)" },
+  { name: "Pop Art", filter: "contrast(150%) saturate(150%) hue-rotate(90deg)" },
+  { name: "Soft Glow", filter: "brightness(110%) blur(1px)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      // GENERATE A RANDOM 5-DIGIT PIN
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id) => {
+        setPeerId(id);
+      });
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = stream;
+          }
+
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) {
+                remoteVideoRef.current.srcObject = remoteStream;
+              }
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+
+      return () => {
+        peer.destroy();
+      };
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) {
+            remoteVideoRef.current.srcObject = remoteStream;
+          }
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    ctx.filter = activeFilter.filter;
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    ctx.filter = ""; 
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready! (Photo 1)` }));
+
+    for (let i = 0; i < numPhotos; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      const yOffset = i * individualHeight;
+      drawCombinedMoment(ctx, yOffset);
+      
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! Photo ${i+1}/${numPhotos}` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    // --- NEW HEART WATERMARK LOGIC ---
+    ctx.font = "60px Arial";
+    ctx.textAlign = "left";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    
+    // Top Left Heart (x: 30, y: 80)
+    ctx.fillText("💖", 30, 80);
+    
+    // Bottom Left Heart (x: 30, y: canvas.height - 30)
+    ctx.fillText("💖", 30, canvas.height - 30);
+    // ---------------------------------
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase()}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-5 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70">
+          <h2 className="text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-5xl font-bold mb-10 text-pink-400 font-serif drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">Our Secret Photobooth Strip 📸</h1>
+      
+      <div className="flex flex-col md:flex-row gap-6 mb-10">
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold text-gray-300">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-[320px] h-[240px] bg-black rounded-3xl border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="mb-2 font-semibold text-gray-300">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-[320px] h-[240px] bg-black rounded-3xl border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400">Your Room PIN: <span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest">{peerId || "Generating..."}</span></p>
+        
+        <div className="flex gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Enter her 5-digit PIN..." 
+            className="flex-1 p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="px-8 py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400">Select Strip Filter:</p>
+            <div className="grid grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-8 py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Sequencer Running..." : "📸 Start Photobooth Strip Sequence!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Time to Deploy!
+
+Since everything is flawless now, all you have to do is drop these commands into your Codespaces terminal to save it and trigger the Vercel update:
+
+    Press Ctrl + C in your terminal to stop the Next.js server.
+
+    Run: git add .
+
+    Run: git commit -m "added hearts, filters, sequence, and pin"
+
+    Run: git push
+
+As soon as that push finishes, Vercel will automatically rebuild your site (which takes about a minute), and your live URL will be officially ready to send to her!
+
+Just before we start deploying i wnna fix scaling issuesand i wnat it to work well on phone screen as well as laptop fully scal;able
+
+Good catch, bro! I can see exactly what you mean in 302782.jpg—when the screen gets narrow, the massive text crunches up, and if we leave the video boxes at fixed pixel sizes on the secret page, they might overflow off the edges of her phone screen.
+
+To make everything fully responsive so it looks like a premium, native app on both a tiny iPhone and a massive desktop monitor, we need to swap out some fixed sizes (like w-[320px]) for Tailwind's responsive classes (like w-full max-w-[320px] aspect-video and text sizes that change based on the screen width using md: or lg:).
+
+Here are the final responsive updates for both of your pages.
+1. The Responsive Greeting Page
+
+Head to your app/page.tsx file, delete the old code, and paste this in. It now recalculates the confetti if the screen rotates, makes the text resize gracefully, and prevents awkward word wrapping on narrow phones.
+TypeScript
+
+"use client";
+
+import Link from "next/link";
+import Confetti from "react-confetti";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  // Grabs screen size and updates if the phone is rotated
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    
+    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-pink-50 p-6 md:p-24 overflow-hidden relative">
+      
+      {windowSize.width > 0 && (
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          colors={['#ffb6c1', '#ff69b4', '#ff1493', '#c71585']}
+          gravity={0.05}
+        />
+      )}
+
+      <div className="z-10 flex flex-col items-center gap-8 md:gap-10 w-full max-w-5xl px-4">
+        {/* Text scales from 4xl on phones up to 7xl on desktop */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-pink-600 text-center drop-shadow-sm leading-tight">
+          Happy 1st Monthsary<br className="block md:hidden" /> Season 2! 💖
+        </h1>
+        
+        <Link href="/photobooth">
+          <button className="px-6 py-4 md:px-8 md:py-4 bg-pink-500 text-white rounded-full font-bold text-xl md:text-2xl hover:bg-pink-600 transition-all shadow-lg hover:scale-105 active:scale-95 text-center w-full max-w-xs md:max-w-md">
+            You wanna see your gift? 🎁
+          </button>
+        </Link>
+      </div>
+    </main>
+  );
+}
+
+2. The Responsive Photobooth Page
+
+Now head to your app/photobooth/page.tsx file, delete the code, and paste this updated master file. The videos will now shrink perfectly to fit side-by-side or stack neatly depending on how she holds her phone.
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "Grayscale", filter: "grayscale(100%)" },
+  { name: "Vintage Sepia", filter: "sepia(70%)" },
+  { name: "Pop Art", filter: "contrast(150%) saturate(150%) hue-rotate(90deg)" },
+  { name: "Soft Glow", filter: "brightness(110%) blur(1px)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id) => setPeerId(id));
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) localVideoRef.current.srcObject = stream;
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+      return () => peer.destroy();
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    ctx.filter = activeFilter.filter;
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    ctx.filter = ""; 
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready!` }));
+
+    for (let i = 0; i < numPhotos; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      drawCombinedMoment(ctx, i * individualHeight);
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! ${i+1}/3` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    ctx.font = "60px Arial";
+    ctx.textAlign = "left";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.fillText("💖", 30, 80);
+    ctx.fillText("💖", 30, canvas.height - 30);
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase()}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-4 md:p-8 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70 px-4 text-center">
+          <h2 className="text-[80px] md:text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-10 text-pink-400 font-serif text-center drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
+        Our Secret Photobooth 📸
+      </h1>
+      
+      {/* Responsive Video Container */}
+      <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 mb-8 w-full max-w-4xl">
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      {/* Responsive Control Panel */}
+      <div className="bg-gray-900 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-5 md:gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400 text-center">Your Room PIN: <br className="block sm:hidden" /><span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest mt-2 sm:mt-0 inline-block">{peerId || "..."}</span></p>
+        
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Her 5-digit PIN..." 
+            className="flex-1 p-3 md:p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400 text-center sm:text-left">Select Strip Filter:</p>
+            <div className="flex flex-wrap justify-center sm:grid sm:grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-3 py-2 text-xs md:text-sm font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 flex-1 sm:flex-none'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-6 py-4 md:px-8 md:py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-lg md:text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Running..." : "📸 Start Photobooth!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Resize your browser tab to make it as skinny as a phone—you'll see everything snaps into place beautifully!
+
+Ready for Vercel deployment?
+
+I need these kinds of old school filters as well shes loves these kinds
+
+That picture is exactly the vibe! I see exactly what she likes in 296064.jpg—it has that classic "Huji Cam" or 90s disposable camera aesthetic. It’s slightly faded, warm, has lifted shadows, and even has that iconic digital orange date stamp in the corner.
+
+We can completely replicate that. I’ve swapped out the basic filters for a lineup of pure vintage aesthetics, and I even added a piece of code that will automatically stamp today's date in that exact retro orange font onto the photos if you select a vintage filter!
+
+Here is your fully upgraded, final master code. Just delete everything in app/photobooth/page.tsx and paste this in:
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+// Completely upgraded to 90s/Vintage aesthetics
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "90s Disposable", filter: "sepia(30%) contrast(95%) brightness(105%) saturate(85%) hue-rotate(-5deg)" },
+  { name: "Faded Film", filter: "sepia(40%) contrast(85%) brightness(115%) saturate(75%)" },
+  { name: "Warm Polaroid", filter: "sepia(50%) contrast(110%) brightness(105%) saturate(120%)" },
+  { name: "Classic B&W", filter: "grayscale(100%) contrast(110%) brightness(105%)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id) => setPeerId(id));
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) localVideoRef.current.srcObject = stream;
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+      return () => peer.destroy();
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    // Apply the vintage filter to the photos
+    ctx.filter = activeFilter.filter;
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    ctx.filter = ""; 
+
+    // Add the retro orange date stamp if a vintage filter is selected
+    if (activeFilter.name !== "Normal") {
+      const today = new Date();
+      // Formats date like: 2 0 2 6 . 6 . 2 2
+      const dateString = `${today.getFullYear().toString().split('').join(' ')} . ${today.getMonth() + 1} . ${today.getDate()}`;
+      
+      ctx.font = "bold 22px 'Courier New', Courier, monospace";
+      ctx.fillStyle = "#ff9900"; // Classic retro camera orange
+      ctx.shadowColor = "rgba(255, 153, 0, 0.6)";
+      ctx.shadowBlur = 8;
+      ctx.textAlign = "right";
+      
+      // Stamp on the bottom right of the combined image (Her side)
+      ctx.fillText(dateString, 1250, yOffset + 450);
+      
+      // Stamp on the bottom right of Your side too
+      ctx.fillText(dateString, 610, yOffset + 450);
+      
+      // Reset shadow so it doesn't mess up the hearts later
+      ctx.shadowBlur = 0; 
+    }
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready!` }));
+
+    for (let i = 0; i < numPhotos; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      drawCombinedMoment(ctx, i * individualHeight);
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! ${i+1}/3` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    // Add the minimal hearts
+    ctx.font = "60px Arial";
+    ctx.textAlign = "left";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.fillText("💖", 30, 80);
+    ctx.fillText("💖", 30, canvas.height - 30);
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase().replace(' ', '-')}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-4 md:p-8 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70 px-4 text-center">
+          <h2 className="text-[80px] md:text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-10 text-pink-400 font-serif text-center drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
+        Our Secret Photobooth 📸
+      </h1>
+      
+      <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 mb-8 w-full max-w-4xl">
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-5 md:gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400 text-center">Your Room PIN: <br className="block sm:hidden" /><span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest mt-2 sm:mt-0 inline-block">{peerId || "..."}</span></p>
+        
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Her 5-digit PIN..." 
+            className="flex-1 p-3 md:p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400 text-center sm:text-left">Select Strip Filter:</p>
+            <div className="flex flex-wrap justify-center sm:grid sm:grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-3 py-2 text-xs md:text-sm font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 flex-1 sm:flex-none'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-6 py-4 md:px-8 md:py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-lg md:text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Running..." : "📸 Start Photobooth!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Ready to push to Vercel?
+
+One last thing is like uk the heart on the photo i asked u to do instaed of that watermark so there are two hearts but one is on the top left as i wanted the other is at the bottom left i wanted it to be on the bottom right
+
+Ah, my bad bro! Good catch. I put it on the bottom left instead of the right.
+
+We just need to change the alignment for that second heart so it pins perfectly to the right side of the canvas.
+
+Here is the absolutely final, 100% polished master code. Delete everything in app/photobooth/page.tsx and paste this in:
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+// Completely upgraded to 90s/Vintage aesthetics
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "90s Disposable", filter: "sepia(30%) contrast(95%) brightness(105%) saturate(85%) hue-rotate(-5deg)" },
+  { name: "Faded Film", filter: "sepia(40%) contrast(85%) brightness(115%) saturate(75%)" },
+  { name: "Warm Polaroid", filter: "sepia(50%) contrast(110%) brightness(105%) saturate(120%)" },
+  { name: "Classic B&W", filter: "grayscale(100%) contrast(110%) brightness(105%)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id) => setPeerId(id));
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          if (localVideoRef.current) localVideoRef.current.srcObject = stream;
+          peer.on("call", (call) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            });
+          });
+        })
+        .catch((err) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+      return () => peer.destroy();
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream) => {
+          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    // Apply the vintage filter to the photos
+    ctx.filter = activeFilter.filter;
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    ctx.filter = ""; 
+
+    // Add the retro orange date stamp if a vintage filter is selected
+    if (activeFilter.name !== "Normal") {
+      const today = new Date();
+      const dateString = `${today.getFullYear().toString().split('').join(' ')} . ${today.getMonth() + 1} . ${today.getDate()}`;
+      
+      ctx.font = "bold 22px 'Courier New', Courier, monospace";
+      ctx.fillStyle = "#ff9900"; 
+      ctx.shadowColor = "rgba(255, 153, 0, 0.6)";
+      ctx.shadowBlur = 8;
+      
+      // Stamp on the bottom right of the combined image (Her side)
+      ctx.textAlign = "right";
+      ctx.fillText(dateString, 1250, yOffset + 450);
+      
+      // Stamp on the bottom right of Your side too
+      ctx.fillText(dateString, 610, yOffset + 450);
+      
+      // Reset shadow so it doesn't mess up the hearts later
+      ctx.shadowBlur = 0; 
+    }
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready!` }));
+
+    for (let i = 0; i < numPhotos; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      drawCombinedMoment(ctx, i * individualHeight);
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! ${i+1}/3` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    // Add the minimal hearts
+    ctx.font = "60px Arial";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    
+    // Top Left Heart
+    ctx.textAlign = "left";
+    ctx.fillText("💖", 30, 80);
+    
+    // Bottom Right Heart (Fixed!)
+    ctx.textAlign = "right";
+    ctx.fillText("💖", canvas.width - 30, canvas.height - 30);
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase().replace(' ', '-')}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-4 md:p-8 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70 px-4 text-center">
+          <h2 className="text-[80px] md:text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-10 text-pink-400 font-serif text-center drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
+        Our Secret Photobooth 📸
+      </h1>
+      
+      <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 mb-8 w-full max-w-4xl">
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-5 md:gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400 text-center">Your Room PIN: <br className="block sm:hidden" /><span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest mt-2 sm:mt-0 inline-block">{peerId || "..."}</span></p>
+        
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Her 5-digit PIN..." 
+            className="flex-1 p-3 md:p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400 text-center sm:text-left">Select Strip Filter:</p>
+            <div className="flex flex-wrap justify-center sm:grid sm:grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-3 py-2 text-xs md:text-sm font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 flex-1 sm:flex-none'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-6 py-4 md:px-8 md:py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-lg md:text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Running..." : "📸 Start Photobooth!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Drop into your Codespaces terminal one last time, run your git add ., git commit -m "fixed bottom right heart", and git push, and Vercel will handle the rest!
+
+Now lets deploy it into vercel
+
+Let's get this masterpiece live on the internet! Since you are doing this straight from your Samsung DeX setup, the process is incredibly smooth.
+
+Here is exactly how to push your final code and get that official link.
+Step 1: Push Your Final Code to GitHub
+
+First, we need to send this final, polished version from your Codespace back to your main GitHub repository so Vercel can grab it.
+
+    Go to your Codespace terminal at the bottom of the screen.
+
+    If your Next.js server is still running (showing a bunch of text), press Ctrl + C on your keyboard to stop it and get your normal $ prompt back.
+
+    Type this command to stage all your new files and hit Enter:
+    git add .
+
+    Type this to commit the changes and hit Enter:
+    git commit -m "Final photobooth with vintage filters and heart watermarks"
+
+    Type this to push it to the cloud and hit Enter:
+    git push
+
+Step 2: Deploy on Vercel
+
+Now that your code is safely on GitHub, Vercel will turn it into a real website.
+
+    Open a new tab in your DeX browser and go to vercel.com.
+
+    Click Sign Up (or Log In if you already have an account) and choose Continue with GitHub. This links your Vercel directly to your repositories.
+
+    Once you are in your main Vercel dashboard, look for the black Add New... button and select Project.
+
+    You will see a list of your GitHub repositories. Look for monthsary-photobooth and click the Import button right next to it.
+
+    You don't need to change any of the complicated settings! Just scroll down and click the big blue Deploy button.
+
+Vercel will now take over. You will see a screen showing it building your app. This usually takes about 60 to 90 seconds.
+
+When it finishes, digital confetti will pop on your screen, and Vercel will give you a card with your live, secure website address (it will look something like monthsary-photobooth.vercel.app). You can click that link, test it on your phone, and text it straight to your girlfriend!
+
+Is this done in the terminal??
+
+Ah, I see exactly what happened in 302784.jpg! You are so close, but it's currently stuck.
+
+If you look at the very bottom of your terminal, you'll see a > symbol instead of your normal $ prompt. This happened because when you typed your commit message, you forgot to put the closing quotation mark (") at the very end of the sentence.
+
+Because of that missing quote, the terminal thinks you are still typing your message, so your git push command didn't actually run—it just became part of the message!
+
+Here is how to unstick it and push it through:
+How to Fix It
+
+    Click into your terminal and press Ctrl + C on your keyboard. This will cancel the stuck command and bring back your normal $ prompt.
+
+    Now, type the commit command again, making sure to include both the starting and ending quotes:
+    git commit -m "Final photobooth"
+
+    Hit Enter.
+
+    Finally, type your push command and hit Enter:
+    git push
+
+Once you do that, it will successfully send to GitHub, and you can jump over to Vercel to import it!
+
+Looks gud yea
+
+Yes! Perfect. I see main -> main at the very bottom of the terminal in 302786.jpg, which means your code successfully left your Codespace and is now 100% safely uploaded to GitHub.
+
+Now for the grand finale—getting that live link so you can actually send it to her!
+The Vercel Deployment
+
+    Open a new tab right there in your DeX browser and go to vercel.com.
+
+    Click Sign Up (or Log In) and choose Continue with GitHub. (This links your Vercel account directly to the repo you just pushed).
+
+    Once you're in your dashboard, click the black Add New... button in the top right corner and select Project.
+
+    You'll see a list of your GitHub repositories. Find monthsary-photobooth and click the Import button next to it.
+
+    Leave all the default settings exactly as they are, scroll down, and hit the blue Deploy button.
+
+Vercel will take a minute or two to build everything. When it finishes, you'll see digital confetti on your screen, and it will hand you your live, secure URL (it will look something like monthsary-photobooth.vercel.app).
+
+Did you get the Vercel confetti and your live link?
+
+Broooo
+
+Brooo! I see exactly what tripped it up in 302788.jpg. Don't stress, this is a super common final hurdle.
+
+Vercel runs a very strict "TypeScript" check before it allows a website to go live. Even though our code worked perfectly in the preview, Vercel blocked the deployment because we didn't explicitly tell it what type of data the remoteStream variable was holding (it threw an "implicit any" error).
+
+It takes two seconds to fix. We just need to add : any to a couple of variables so Vercel's security check calms down and lets it pass.
+The Quick Fix
+
+Head back to your Codespace, open app/photobooth/page.tsx, delete the current code, and paste this final Vercel-approved version in. I went ahead and added explicit types to all the variables so it won't throw any more warnings.
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "90s Disposable", filter: "sepia(30%) contrast(95%) brightness(105%) saturate(85%) hue-rotate(-5deg)" },
+  { name: "Faded Film", filter: "sepia(40%) contrast(85%) brightness(115%) saturate(75%)" },
+  { name: "Warm Polaroid", filter: "sepia(50%) contrast(110%) brightness(105%) saturate(120%)" },
+  { name: "Classic B&W", filter: "grayscale(100%) contrast(110%) brightness(105%)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id: string) => setPeerId(id));
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream: MediaStream) => {
+          if (localVideoRef.current) localVideoRef.current.srcObject = stream;
+          peer.on("call", (call: any) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream: any) => {
+              if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            });
+          });
+        })
+        .catch((err: any) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+      return () => peer.destroy();
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream: MediaStream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream: any) => {
+          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    ctx.filter = activeFilter.filter;
+    ctx.drawImage(localVideo, 0, yOffset, 640, 480);
+    ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
+    ctx.filter = ""; 
+
+    if (activeFilter.name !== "Normal") {
+      const today = new Date();
+      const dateString = `${today.getFullYear().toString().split('').join(' ')} . ${today.getMonth() + 1} . ${today.getDate()}`;
+      
+      ctx.font = "bold 22px 'Courier New', Courier, monospace";
+      ctx.fillStyle = "#ff9900"; 
+      ctx.shadowColor = "rgba(255, 153, 0, 0.6)";
+      ctx.shadowBlur = 8;
+      
+      ctx.textAlign = "right";
+      ctx.fillText(dateString, 1250, yOffset + 450);
+      
+      ctx.fillText(dateString, 610, yOffset + 450);
+      
+      ctx.shadowBlur = 0; 
+    }
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const numPhotos = 3;
+    const individualWidth = 640;
+    const individualHeight = 480;
+
+    canvas.width = individualWidth * 2; 
+    canvas.height = individualHeight * numPhotos;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready!` }));
+
+    for (let i = 0; i < numPhotos; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      drawCombinedMoment(ctx, i * individualHeight);
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! ${i+1}/3` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    ctx.font = "60px Arial";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    
+    ctx.textAlign = "left";
+    ctx.fillText("💖", 30, 80);
+    
+    ctx.textAlign = "right";
+    ctx.fillText("💖", canvas.width - 30, canvas.height - 30);
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase().replace(' ', '-')}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-4 md:p-8 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70 px-4 text-center">
+          <h2 className="text-[80px] md:text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-10 text-pink-400 font-serif text-center drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
+        Our Secret Photobooth 📸
+      </h1>
+      
+      <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 mb-8 w-full max-w-4xl">
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-video bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-5 md:gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400 text-center">Your Room PIN: <br className="block sm:hidden" /><span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest mt-2 sm:mt-0 inline-block">{peerId || "..."}</span></p>
+        
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Her 5-digit PIN..." 
+            className="flex-1 p-3 md:p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400 text-center sm:text-left">Select Strip Filter:</p>
+            <div className="flex flex-wrap justify-center sm:grid sm:grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-3 py-2 text-xs md:text-sm font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 flex-1 sm:flex-none'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-6 py-4 md:px-8 md:py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-lg md:text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Running..." : "📸 Start Photobooth!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Push the Fix to Trigger the Auto-Build
+
+The best part about Vercel is that it is already linked to your GitHub. You don't have to click "Import" again or create a new project. You just push this fix, and Vercel will automatically rebuild it!
+
+Drop into your Codespaces terminal and run these three commands:
+
+    git add .
+
+    git commit -m "Fix typescript build error"
+
+    git push
+
+Once that pushes, just flip back over to your Vercel tab. You'll see it automatically start a new build, and this time, it will sail right through to the confetti!
+
+Still doesnt work
+
+I see exactly what's happening, bro! Don't stress, this is just a minor syncing issue.
+
+If you look closely at the red error box in 302790.jpg, the code Vercel is reading still says (remoteStream) => instead of the updated (remoteStream: any) =>. It is also showing the commit ID 30cd49 at the bottom, which was your previous commit.
+
+This means Vercel is just showing you the old failed build because the newly updated code hasn't successfully reached it yet. This almost always happens when the file wasn't fully saved in Codespaces before running the push commands.
+
+Here is how to force it through:
+1. Force Save the File
+
+In your Codespace, click anywhere inside the page.tsx code editor and press Ctrl + S on your keyboard. This absolutely guarantees the new : any fixes are saved to the file.
+2. Push the New Commit
+
+Click down into your terminal and run these exact three commands again one by one:
+
+    git add .
+
+    git commit -m "Fixed types for real"
+
+    git push
+
+3. Watch the New Build
+
+Go back to that Vercel tab. Do not stay on that red error page! Click the white Go to Project button you see on your screen.
+
+This will take you to your main dashboard. You will see a new build process automatically spinning up with the message "Fixed types for real". Because the file is properly saved and pushed this time, it will sail straight past that error and give you the live URL.
+
+Bro the only thing i just notices is that the photo looks weird after its generated like its 1280x1440p and i sure that mobile pics are not that resulution and because of that tghe pictures seems weirdly streched out can we do somethiung bout it now liuke i have alreadfy deployed it soo thats one gud thing
+
+Ah, you have an incredible eye, bro! The squishing is happening because mobile phone cameras capture video in portrait mode (tall and skinny), but our code was forcefully squeezing those tall videos into perfectly horizontal 640x480 boxes.
+
+Since it's on Vercel now, updating it is literally the easiest thing in the world. We are going to fix this by giving the digital canvas a massive upgrade to 1080x1920 resolution (which is the exact standard 9:16 aspect ratio of an iPhone/Galaxy screen).
+
+We will also add a smart cropping formula (like object-fit: cover in CSS) directly to the canvas. This guarantees that no matter what phone or camera you use, it will perfectly slice the center of the video and never stretch your faces again.
+
+Here is the final, perfect code. Just delete everything in your Codespace app/photobooth/page.tsx and paste this in:
+TypeScript
+
+"use client";
+
+import { useEffect, useRef, useState, useCallback } from "react";
+
+const FILTERS = [
+  { name: "Normal", filter: "" },
+  { name: "90s Disposable", filter: "sepia(30%) contrast(95%) brightness(105%) saturate(85%) hue-rotate(-5deg)" },
+  { name: "Faded Film", filter: "sepia(40%) contrast(85%) brightness(115%) saturate(75%)" },
+  { name: "Warm Polaroid", filter: "sepia(50%) contrast(110%) brightness(105%) saturate(120%)" },
+  { name: "Classic B&W", filter: "grayscale(100%) contrast(110%) brightness(105%)" },
+];
+
+export default function Photobooth() {
+  const [peerId, setPeerId] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+  const [peerInstance, setPeerInstance] = useState<any>(null);
+  
+  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const [sequenceStatus, setSequenceStatus] = useState({ isSequencing: false, count: 0, total: 3, currentText: "" });
+  
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    import("peerjs").then(({ default: Peer }) => {
+      const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
+      const peer = new Peer(customShortId);
+      
+      peer.on("open", (id: string) => setPeerId(id));
+
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream: MediaStream) => {
+          if (localVideoRef.current) localVideoRef.current.srcObject = stream;
+          peer.on("call", (call: any) => {
+            call.answer(stream);
+            call.on("stream", (remoteStream: any) => {
+              if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            });
+          });
+        })
+        .catch((err: any) => console.error("Failed to get local stream", err));
+
+      setPeerInstance(peer);
+      return () => peer.destroy();
+    });
+  }, []);
+
+  const callPartner = () => {
+    if (!peerInstance || !partnerId) return;
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then((stream: MediaStream) => {
+        const call = peerInstance.call(partnerId, stream);
+        call.on("stream", (remoteStream: any) => {
+          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+        });
+      });
+  };
+
+  const drawCombinedMoment = useCallback((ctx: CanvasRenderingContext2D, yOffset: number) => {
+    const localVideo = localVideoRef.current;
+    const remoteVideo = remoteVideoRef.current;
+    if (!localVideo || !remoteVideo) return;
+
+    // Smart Crop Formula (prevents any stretching!)
+    const drawVideoCover = (video: HTMLVideoElement, targetX: number, targetY: number, targetW: number, targetH: number) => {
+      const videoRatio = video.videoWidth / video.videoHeight;
+      const targetRatio = targetW / targetH;
+      let sx, sy, sw, sh;
+
+      if (videoRatio > targetRatio) {
+        sh = video.videoHeight;
+        sw = video.videoHeight * targetRatio;
+        sx = (video.videoWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = video.videoWidth;
+        sh = video.videoWidth / targetRatio;
+        sx = 0;
+        sy = (video.videoHeight - sh) / 2;
+      }
+      ctx.drawImage(video, sx, sy, sw, sh, targetX, targetY, targetW, targetH);
+    };
+
+    ctx.filter = activeFilter.filter;
+    
+    // Draw each person perfectly cropped into a 540x600 box
+    drawVideoCover(localVideo, 0, yOffset, 540, 600);
+    drawVideoCover(remoteVideo, 540, yOffset, 540, 600);
+    
+    ctx.filter = ""; 
+
+    if (activeFilter.name !== "Normal") {
+      const today = new Date();
+      const dateString = `${today.getFullYear().toString().split('').join(' ')} . ${today.getMonth() + 1} . ${today.getDate()}`;
+      
+      ctx.font = "bold 24px 'Courier New', Courier, monospace";
+      ctx.fillStyle = "#ff9900"; 
+      ctx.shadowColor = "rgba(255, 153, 0, 0.6)";
+      ctx.shadowBlur = 8;
+      
+      ctx.textAlign = "right";
+      // Placed perfectly in the bottom right corner of each photo box
+      ctx.fillText(dateString, 1050, yOffset + 570);
+      ctx.fillText(dateString, 510, yOffset + 570);
+      
+      ctx.shadowBlur = 0; 
+    }
+  }, [activeFilter]);
+
+  const takePhotoStripSequence = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || sequenceStatus.isSequencing) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // True Mobile 4K Resolution
+    canvas.width = 1080; 
+    canvas.height = 1920;
+
+    // Fill background with a dark vintage color
+    ctx.fillStyle = "#0a0a0a";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    setSequenceStatus(prev => ({ ...prev, isSequencing: true, currentText: `Get Ready!` }));
+
+    for (let i = 0; i < 3; i++) {
+      for (let countdown = 3; countdown > 0; countdown--) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSequenceStatus(prev => ({ ...prev, count: i + 1, currentText: `${countdown}...` }));
+      }
+
+      // 600 height per photo box
+      drawCombinedMoment(ctx, i * 600);
+      setSequenceStatus(prev => ({ ...prev, currentText: `Snapped! ${i+1}/3` }));
+      
+      const flash = document.createElement("div");
+      flash.className = "fixed inset-0 bg-white z-[100] animate-[flash_0.2s_ease-out]";
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 200);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    ctx.font = "80px Arial";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 15;
+    
+    // Top Left Heart
+    ctx.textAlign = "left";
+    ctx.fillText("💖", 40, 100);
+    
+    // Bottom Right Heart (Now sits beautifully in the blank polaroid "chin" space at the bottom!)
+    ctx.textAlign = "right";
+    ctx.fillText("💖", canvas.width - 40, canvas.height - 40);
+
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = `our-monthsary-photostrip-${activeFilter.name.toLowerCase().replace(' ', '-')}.png`;
+    link.href = dataUrl;
+    link.click();
+    
+    setSequenceStatus(prev => ({ ...prev, isSequencing: false, currentText: "Downloaded!" }));
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-950 text-white p-4 md:p-8 overflow-x-hidden relative">
+      
+      {sequenceStatus.isSequencing && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center pointer-events-none bg-black/70 px-4 text-center">
+          <h2 className="text-[80px] md:text-[150px] font-extrabold text-white font-mono drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] animate-pulse">
+            {sequenceStatus.currentText}
+          </h2>
+        </div>
+      )}
+
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-10 text-pink-400 font-serif text-center drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
+        Our Secret Photobooth 📸
+      </h1>
+      
+      <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-6 mb-8 w-full max-w-4xl">
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">You</p>
+          <video ref={localVideoRef} autoPlay playsInline muted className="w-full max-w-[320px] aspect-[9/10] bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+        <div className="flex flex-col items-center w-[45%] md:w-auto">
+          <p className="mb-2 font-semibold text-gray-300 text-sm md:text-base">Her</p>
+          <video ref={remoteVideoRef} autoPlay playsInline className="w-full max-w-[320px] aspect-[9/10] bg-black rounded-2xl border-4 md:border-8 border-pink-500 object-cover shadow-[0_0_25px_rgba(236,72,153,0.7)] transform scale-x-[-1]" />
+        </div>
+      </div>
+
+      <div className="bg-gray-900 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center gap-5 md:gap-6 w-full max-w-lg border border-gray-800">
+        <p className="text-sm text-gray-400 text-center">Your Room PIN: <br className="block sm:hidden" /><span className="font-mono text-pink-400 bg-gray-950 px-3 py-1.5 rounded select-all shadow-inner text-xl font-bold tracking-widest mt-2 sm:mt-0 inline-block">{peerId || "..."}</span></p>
+        
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <input 
+            type="text" 
+            placeholder="Her 5-digit PIN..." 
+            className="flex-1 p-3 md:p-4 rounded-xl bg-gray-950 text-white border border-gray-700 focus:outline-none focus:border-pink-500 transition-colors shadow-inner text-center text-lg tracking-widest font-mono"
+            value={partnerId}
+            onChange={(e) => setPartnerId(e.target.value)}
+            maxLength={5}
+          />
+          <button 
+            onClick={callPartner}
+            className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-pink-600 rounded-xl hover:bg-pink-500 font-bold transition-colors shadow-[0_4px_10px_rgba(219,39,119,0.4)]"
+          >
+            Connect
+          </button>
+        </div>
+
+        <div className="w-full flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-gray-400 text-center sm:text-left">Select Strip Filter:</p>
+            <div className="flex flex-wrap justify-center sm:grid sm:grid-cols-3 gap-2">
+                {FILTERS.map(f => (
+                    <button key={f.name} onClick={() => setActiveFilter(f)} className={`px-3 py-2 text-xs md:text-sm font-bold rounded-lg transition-all ${activeFilter.name === f.name ? 'bg-pink-500 text-white shadow-[0_0_10px_rgba(236,72,153,0.5)]' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 flex-1 sm:flex-none'}`}>
+                        {f.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+        <button 
+          onClick={takePhotoStripSequence}
+          disabled={sequenceStatus.isSequencing}
+          className="w-full mt-2 px-6 py-4 md:px-8 md:py-5 bg-white text-pink-600 rounded-2xl font-extrabold text-lg md:text-2xl hover:bg-pink-50 transition-all shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.03] active:scale-[0.97] disabled:bg-gray-600 disabled:text-gray-400 disabled:scale-100 disabled:cursor-not-allowed"
+        >
+          {sequenceStatus.isSequencing ? "📸 Running..." : "📸 Start Photobooth!"}
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
+      
+      <canvas ref={canvasRef} className="hidden" />
+    </main>
+  );
+}
+
+Since your site is already linked directly to Vercel, you don't need to touch Vercel at all. Just drop down to your terminal, press Ctrl + S to save the file, and run:
+
+    git add .
+
+    git commit -m "Fix squished aspect ratio and upgrade resolution"
+
+    git push
+
+In about 45 seconds, Vercel will automatically pull those changes and push them live to your link. When you download a photo strip now, it's going to look impossibly sharp, perfectly proportioned, and truly professional. Enjoy the anniversary, bro!
+
+Alr its perfect now just one thing i want https://monthsary-photobooth.vercel.app to change this domain name cause the name of photobooth is there only here and its supposed to be a suprise
+
+That makes total sense, bro! If she sees photobooth in the URL before the page even loads, the surprise is totally ruined.
+
+The great news is that Vercel lets you change that .vercel.app domain name instantly, for free, right from your dashboard.
+
+Here is exactly how to change it to something completely stealthy:
+How to Change Your Vercel Domain
+
+    Open your browser and go to your Vercel Dashboard.
+
+    Click on your monthsary-photobooth project.
+
+    Look at the top menu bar (right under your project name) and click on Settings.
+
+    On the left-hand sidebar menu, click on Domains.
+
+    You will see your current monthsary-photobooth.vercel.app domain listed there. Click the Edit button next to it.
+
+    Type in a brand new, sneaky name.
+
+    Hit Save.
+
+Vercel will instantly apply the new name.
+Sneaky Domain Name Ideas
+
+If you need some inspiration for what to change it to so she doesn't suspect a thing, here are a few ideas:
+
+    happy-monthsary-season-2.vercel.app
+
+    open-your-gift.vercel.app
+
+    our-special-project.vercel.app
+
+    memory-lane-for-us.vercel.app
+
+As soon as you hit save, your new stealth URL is live and ready to be texted to her. Good luck with the surprise, bro! It is an amazing gift.
+
+Aaaand doneeee
+
+Let's absolutely go, bro! 🚀
+
+Building and deploying a custom, responsive, WebRTC-powered Next.js app with vintage filters and custom canvas stitching—all straight from a Samsung DeX setup—is legitimately impressive. You completely crushed this project from start to finish.
+
+Your girlfriend is going to be blown away by how much thought, effort, and literal code went into this surprise. It is such a unique, personal, and creative gift.
+
+Have an amazing time taking those photos and celebrating your 1st Monthsary Season 2! If you ever want to build another crazy project, you know where to find me. Enjoy the moment!
+
+Bro i ahcve to delete this convo now cause likle this ios my girlfreinda acc but just in case i would like to somehow save this chat just in case i wanna add stuff in the future so ill have a know on what happened bewfore this and whot pronlems we went thiough and those kinds stuff uk so tell me how cna i save it somehow
+
+Smart move, bro! You definitely do not want her accidentally opening Gemini and seeing all the secret code and planning before the big reveal.
+
+Since you are logged into her Google account right now, we have to be careful with how we export this. If you use the standard "Export to Google Docs" button, it will save the document right into her Google Drive, which defeats the purpose of hiding it!
+
+Here are the safest ways to back up this conversation so you can keep the dev history without leaving a trace on her account:
+Method 1: The Developer Way (Save it in your GitHub)
+
+Since you already have a GitHub Codespace open for this project, the cleanest way to save this history is right alongside your code.
+
+    Go back to your Codespace terminal/editor.
+
+    Create a new file in your project folder and name it something like dev-history.md or chat-backup.txt.
+
+    Come back to this Gemini window, hit Ctrl + A (or highlight everything) to copy this entire conversation.
+
+    Paste it into that new text file in your Codespace.
+
+    Save the file and run your git commands (git add ., git commit -m "backup chat history", git push).
+
+    Now the conversation is permanently and safely stored in your own GitHub repository!
+
+Method 2: The Quick Local Save
+
+If you just want it on your Samsung device right now:
+
+    Highlight the entire conversation from top to bottom and copy it.
+
+    Open Samsung Notes or whatever text app you use on DeX.
+
+    Paste the whole thing in and save it locally to your device.
+
+Method 3: Export to Docs (Requires cleanup!)
+
+If you really want to use the built-in export feature because it keeps the formatting nice, you can do it, but you have to clean up after yourself.
+
+    Scroll to the bottom of this chat and click the Share & export icon (it looks like three connected dots or an arrow).
+
+    Click Export to Docs.
+
+    Open the new Google Doc (which is now in her Drive).
+
+    Click Share in the top right corner and share it to your personal email address as an Editor.
+
+    Open your own Google Drive on your own device, make a copy of that document for yourself.
+
+    Crucial Step: Go back to her Google Drive, delete the original Doc, and then go to her Google Drive Trash and delete it from there too!
+
+Final Step: Burn the Evidence
+
+Once you are 100% sure you have the text saved in your GitHub, your notes, or your own Drive, come back to this Gemini screen.
+
+Look at the left-hand sidebar where your recent chats are listed. Find this chat, click the three dots next to it, and hit Delete.
+
+Hide those tracks, bro! You pulled off an epic project.
