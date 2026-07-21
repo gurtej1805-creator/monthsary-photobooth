@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 
-// Completely upgraded to 90s/Vintage aesthetics
 const FILTERS = [
   { name: "Normal", filter: "" },
   { name: "90s Disposable", filter: "sepia(30%) contrast(95%) brightness(105%) saturate(85%) hue-rotate(-5deg)" },
@@ -28,19 +27,19 @@ export default function Photobooth() {
       const customShortId = Math.floor(10000 + Math.random() * 90000).toString();
       const peer = new Peer(customShortId);
       
-      peer.on("open", (id) => setPeerId(id));
+      peer.on("open", (id: string) => setPeerId(id));
 
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-        .then((stream) => {
+        .then((stream: MediaStream) => {
           if (localVideoRef.current) localVideoRef.current.srcObject = stream;
-          peer.on("call", (call) => {
+          peer.on("call", (call: any) => {
             call.answer(stream);
-            call.on("stream", (remoteStream) => {
+            call.on("stream", (remoteStream: any) => {
               if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
             });
           });
         })
-        .catch((err) => console.error("Failed to get local stream", err));
+        .catch((err: any) => console.error("Failed to get local stream", err));
 
       setPeerInstance(peer);
       return () => peer.destroy();
@@ -50,9 +49,9 @@ export default function Photobooth() {
   const callPartner = () => {
     if (!peerInstance || !partnerId) return;
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-      .then((stream) => {
+      .then((stream: MediaStream) => {
         const call = peerInstance.call(partnerId, stream);
-        call.on("stream", (remoteStream) => {
+        call.on("stream", (remoteStream: any) => {
           if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
         });
       });
@@ -63,13 +62,11 @@ export default function Photobooth() {
     const remoteVideo = remoteVideoRef.current;
     if (!localVideo || !remoteVideo) return;
 
-    // Apply the vintage filter to the photos
     ctx.filter = activeFilter.filter;
     ctx.drawImage(localVideo, 0, yOffset, 640, 480);
     ctx.drawImage(remoteVideo, 640, yOffset, 640, 480);
     ctx.filter = ""; 
 
-    // Add the retro orange date stamp if a vintage filter is selected
     if (activeFilter.name !== "Normal") {
       const today = new Date();
       const dateString = `${today.getFullYear().toString().split('').join(' ')} . ${today.getMonth() + 1} . ${today.getDate()}`;
@@ -79,14 +76,11 @@ export default function Photobooth() {
       ctx.shadowColor = "rgba(255, 153, 0, 0.6)";
       ctx.shadowBlur = 8;
       
-      // Stamp on the bottom right of the combined image (Her side)
       ctx.textAlign = "right";
       ctx.fillText(dateString, 1250, yOffset + 450);
       
-      // Stamp on the bottom right of Your side too
       ctx.fillText(dateString, 610, yOffset + 450);
       
-      // Reset shadow so it doesn't mess up the hearts later
       ctx.shadowBlur = 0; 
     }
   }, [activeFilter]);
@@ -124,16 +118,13 @@ export default function Photobooth() {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
-    // Add the minimal hearts
     ctx.font = "60px Arial";
     ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
     ctx.shadowBlur = 10;
     
-    // Top Left Heart
     ctx.textAlign = "left";
     ctx.fillText("💖", 30, 80);
     
-    // Bottom Right Heart (Fixed!)
     ctx.textAlign = "right";
     ctx.fillText("💖", canvas.width - 30, canvas.height - 30);
 
@@ -223,8 +214,6 @@ export default function Photobooth() {
     </main>
   );
 }
-
-
 
 
 
